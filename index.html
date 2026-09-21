@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ইংরেজি বলা শিখি — ৩ মাসের স্পোকেন ইংলিশ ও গ্রামার কোর্স</title>
+<meta name="description" content="বাংলায় বুঝে বুঝে ইংরেজি গ্রামার ও স্পোকেন ইংলিশ শেখার ৩ মাসের সহজ কোর্স।">
+<meta name="theme-color" content="#0b6e4f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+</head>
+<body data-page="-1">
+<header class="topbar">
+  <div class="in">
+    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="মেনু খোলো" aria-expanded="false">☰</button>
+    <a class="brand" href="index.html"><i>En</i><b>ইংরেজি বলা শিখি</b></a>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="থিম বদলাও">🌙</button>
+  </div>
+  <div class="pbar" id="pbar"></div>
+</header>
+<div class="scrim" id="scrim"></div>
+<aside class="side" id="side" aria-label="অধ্যায়সমূহ">
+  <div class="side-head">
+    <div class="sh-top"><div><b>সূচিপত্র</b><small>৩ মাসের কোর্স</small></div>
+    <button class="icon-btn side-close" id="sideClose" type="button" aria-label="মেনু বন্ধ করো">✕</button></div>
+    <div class="sh-prog"><div class="sh-row"><span>কোর্সের অগ্রগতি</span><b id="sideProg">০%</b></div><div class="sh-bar"><i id="sideBar"></i></div></div>
+  </div>
+  <nav class="side-nav" id="sideNav"></nav>
+</aside>
+<div class="layout">
+<main id="main">
+<section class="hero">
+  <h1>ইংরেজিতে কথা বলা শুরু হোক আজ থেকেই</h1>
+  <p class="lead">একদম শুরু থেকে, বাংলায় বুঝে বুঝে — ৩ মাসে নিজের কথা নিজে ইংরেজিতে বলার সহজ কোর্স। প্রতিটা পাঠ শেষ করলে তবেই পরের পাঠ খুলবে, তাই ধাপে ধাপে এগোও।</p>
+  <div class="machine" aria-live="polite">
+    <div class="row"><small>বাংলায় ভাবো</small><div class="bn-s" id="mBn">আমি ভাত খাই।</div></div>
+    <div class="mid"><b>ইংরেজিতে বলো</b></div>
+    <div class="row en-row"><div class="en-s"><span><span id="mEn"></span><span class="caret"></span></span><button class="say" id="mSay" type="button" aria-label="উচ্চারণ শোনো">🔊</button></div></div>
+  </div>
+  <div class="dash">
+    <div class="card"><span class="ring" id="ring"></span><div class="k">পাঠ শেষ</div><div class="v"><span id="lDone">০</span><small> / ৩৩</small></div></div>
+    <div class="card"><div class="k">টানা পড়ার দিন 🔥</div><div class="v"><span id="streak">০</span><small> দিন</small></div></div>
+    <div class="card"><div class="k">এই সপ্তাহ</div><div class="days" id="days"></div><div class="hint" id="daysTxt"></div></div>
+    <div class="card today"><p id="todayTxt">আজকের ৪০ মিনিট পড়া শেষ হলে বাটনটা চাপো।</p><button class="btn sunny" id="todayBtn" type="button">✔ আজ পড়েছি</button></div>
+  </div>
+  <div class="cta"><a class="btn" id="continueBtn" href="lesson-01.html">শুরু করো</a></div>
+</section>
+<div class="part"><p class="part-t">কোর্স ম্যাপ</p></div>
+<p class="map-note">🔒 তালাবদ্ধ পাঠগুলো আগের পাঠ শেষ করলে খুলবে। তোমার অগ্রগতি এই ব্রাউজারেই সেভ থাকে।</p>
+<div id="courseMap"></div>
+<div class="reset"><button type="button" class="link" id="resetBtn">সব অগ্রগতি মুছে নতুন করে শুরু করো</button></div>
+</main>
+</div>
+<button class="totop" id="totop" type="button" aria-label="উপরে যাও">↑</button>
+<div class="toast" id="toast" role="status"></div>
+<noscript><style>.js main{visibility:visible}</style></noscript>
+<script src="assets/app.js"></script>
+</body>
+</html>
