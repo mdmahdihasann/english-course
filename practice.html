@@ -37,16 +37,18 @@
 <section class="sec" id="lesson">
 <h2><span class="tag">প্রতিদিন</span><span class="ttl">দৈনিক অনুশীলন</span></h2>
 <p>এই পেজটা প্রতিবার খুললে <b>নতুন কুইজ, নতুন বাক্য, নতুন শব্দ আর লেখার নতুন টপিক</b> পাবে। কোর্সের যেকোনো ধাপে এখানে এসে প্রতিদিন ১৫ মিনিট অনুশীলন করো। তোমার স্কোর আর লেখাগুলো এই ব্রাউজারেই সেভ থাকে।</p>
+<p class="pool">এই মুহূর্তে ভান্ডারে: <b id="pPool">…</b></p>
 <div class="pstats">
   <div class="card"><div class="k">কুইজ খেলেছ</div><div class="v" id="pQuizN">০</div></div>
   <div class="card"><div class="k">সেরা স্কোর</div><div class="v" id="pBest">—</div></div>
   <div class="card"><div class="k">লেখা জমা দিয়েছ</div><div class="v" id="pWriteN">০</div></div>
+  <div class="card"><div class="k">হোম টাস্ক শেষ</div><div class="v" id="pTaskN">০</div></div>
 </div>
 </section>
 
 <section class="sec" id="pquiz">
 <h3>🎲 র‍্যান্ডম কুইজ</h3>
-<p>৫০+ প্রশ্ন থেকে প্রতিবার ১০টা এলোমেলোভাবে আসবে। ভুল হলে বাংলায় কারণ দেখাবে।</p>
+<p>২০০+ প্রশ্ন থেকে প্রতিবার ১০টা এলোমেলোভাবে আসবে। ভুল হলে বাংলায় কারণ দেখাবে।</p>
 <div class="quiz" id="pQuiz">
   <div class="qbar"><span id="qNum"></span><span id="qScore"></span></div>
   <div class="qtrack"><i id="qFill"></i></div>
@@ -65,6 +67,13 @@
 <p>শব্দটা, অর্থ আর উদাহরণ বাক্যটা খাতায় লিখে রাখো।</p>
 <div class="word-grid" id="wordGrid"></div>
 <div class="cta"><button class="btn ghost" id="newSet" type="button">🔄 নতুন সেট দাও</button></div>
+</section>
+
+<section class="sec" id="ptask">
+<h3>📝 আজকের হোম টাস্ক</h3>
+<p>প্রতিদিন ৩টা ছোট কাজ — খাতায় লেখো বা জোরে বলো, তারপর টিক দাও। কাল আবার নতুন টাস্ক আসবে।</p>
+<div class="task-head"><span id="taskProg"></span><button type="button" class="link" id="newTasks">অন্য টাস্ক দাও</button></div>
+<div class="task-list" id="taskList"></div>
 </section>
 
 <section class="sec" id="pwrite">
@@ -90,6 +99,7 @@
 <div class="toast" id="toast" role="status"></div>
 <noscript><style>.js main{visibility:visible}</style></noscript>
 <script src="assets/app.js"></script>
+<script src="assets/practice-data.js"></script>
 <script src="assets/practice.js"></script>
 </body>
 </html>

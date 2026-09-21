@@ -3,7 +3,8 @@
 const {$,$$,bnNum,store,toast,speak,mkSay,confetti}=window.EC;
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=(arr,n)=>shuffle(arr).slice(0,n);
-const KEY={w:"practice.writings",d:"practice.draft",s:"practice.stats"};
+const KEY={w:"practice.writings",d:"practice.draft",s:"practice.stats",t:"practice.tasks"};
+const X=window.EC_DATA||{quiz:[],sent:[],words:[],topics:[],tasks:[]};
 
 /* ---------- data pools ---------- */
 /* q = প্রশ্ন, o = অপশন, a = সঠিক অপশন, why = কারণ, s = পুরো বাক্য (উচ্চারণের জন্য) */
@@ -62,7 +63,7 @@ const QUIZ=[
 ["Does she ___ in Dhaka?",["live","lives","living"],"live","Does এর পরে s বাদ।","Does she live in Dhaka?"],
 ["They ___ not at home.",["are","is","do"],"are","They এর সাথে are।","They are not at home."],
 ["I ___ breakfast at 8 every day.",["have","has","having"],"have","I + প্রতিদিনের কাজ → have।","I have breakfast at 8 every day."],
-].map(a=>({q:a[0],o:a[1],a:a[2],why:a[3],s:a[4]||a[2]}));
+].concat(X.quiz).map(a=>({q:a[0],o:a[1],a:a[2],why:a[3],s:a[4]||a[2]}));
 
 const SENT=[
 ["I wake up at six every morning.","আমি প্রতিদিন সকাল ছয়টায় ঘুম থেকে উঠি।"],
@@ -115,7 +116,7 @@ const SENT=[
 ["Let me think about it.","আমাকে একটু ভাবতে দাও।"],
 ["What are you doing this weekend?","এই সপ্তাহান্তে তুমি কী করছ?"],
 ["I have to go now.","আমাকে এখন যেতে হবে।"],
-];
+].concat(X.sent);
 
 const WORDS=[
 ["arrive","পৌঁছানো","I will arrive at 5 pm."],["borrow","ধার নেওয়া","Can I borrow your pen?"],["busy","ব্যস্ত","I am busy today."],
@@ -139,7 +140,7 @@ const WORDS=[
 ["empty","খালি","The bottle is empty."],["holiday","ছুটি","Friday is a holiday."],["order","অর্ডার দেওয়া","I would like to order a burger."],
 ["reach","পৌঁছানো","I reached home at 9."],["return","ফিরে আসা","I will return by evening."],["spend","খরচ করা / সময় কাটানো","I spend time with my family."],
 ["nervous","ঘাবড়ে যাওয়া","I feel nervous before exams."],["proud","গর্বিত","I am proud of you."],["lucky","ভাগ্যবান","You are very lucky."],
-];
+].concat(X.words);
 
 const TOPICS=[
 {t:"My daily routine",bn:"আমার প্রতিদিনের রুটিন",h:["সকালে কখন ওঠো, কী করো?","দুপুরে ও বিকেলে কী করো?","রাতে কখন ঘুমাও?"]},
@@ -164,16 +165,19 @@ const TOPICS=[
 {t:"My morning today",bn:"আজ সকালটা কেমন গেল",h:["Present Perfect / Past Simple ব্যবহার করো","I have already… / I woke up…"]},
 {t:"My dream job",bn:"আমার স্বপ্নের চাকরি",h:["কী হতে চাও?","কেন?","তার জন্য এখন কী করছ?"]},
 {t:"A problem in my area",bn:"আমার এলাকার একটা সমস্যা",h:["সমস্যাটা কী?","কেন হয়?","কী করা উচিত? (should)"]},
-];
+].concat(X.topics);
+const TASKS=X.tasks;
 
 /* ---------- stats ---------- */
-let stats=store.get(KEY.s,{quizzes:0,best:0});
+let stats=store.get(KEY.s,{quizzes:0,best:0,tasks:0});if(!stats.tasks)stats.tasks=0;
 let writings=store.get(KEY.w,[]);
 const saveStats=()=>store.set(KEY.s,stats);
 function updStats(){
   $("#pQuizN").textContent=bnNum(stats.quizzes);
   $("#pBest").textContent=stats.quizzes?bnNum(stats.best)+"/১০":"—";
   $("#pWriteN").textContent=bnNum(writings.length);
+  $("#pTaskN").textContent=bnNum(stats.tasks);
+  $("#pPool").textContent=bnNum(QUIZ.length)+" প্রশ্ন · "+bnNum(SENT.length)+" বাক্য · "+bnNum(WORDS.length)+" শব্দ";
 }
 
 /* ---------- quiz ---------- */
@@ -217,6 +221,28 @@ function renderRead(){
 }
 $("#newSet").onclick=()=>{renderRead();toast("নতুন বাক্য আর শব্দ এলো 🔄");$("#sentList").scrollIntoView({behavior:"smooth",block:"start"})};
 renderRead();
+
+/* ---------- home task ---------- */
+const today=()=>new Date().toISOString().slice(0,10);
+let tk=store.get(KEY.t,null);
+function newTasks(){tk={date:today(),ids:pick(TASKS.map((_,i)=>i),3),done:[]};store.set(KEY.t,tk)}
+if(!tk||tk.date!==today()||!Array.isArray(tk.ids))newTasks();
+function renderTasks(){
+  const box=$("#taskList");box.innerHTML="";
+  tk.ids.forEach(id=>{const t=TASKS[id];if(!t)return;const on=tk.done.includes(id);
+    const l=document.createElement("label");l.className="task"+(on?" on":"");
+    l.innerHTML=`<input type="checkbox"${on?" checked":""}><span class="tk"><b></b><small></small></span>`;
+    l.querySelector("b").textContent=t.t;l.querySelector("small").textContent=t.d;
+    l.querySelector("input").onchange=e=>{
+      if(e.target.checked){tk.done.push(id);stats.tasks++;toast("দারুণ! একটা টাস্ক শেষ ✅")}
+      else{tk.done=tk.done.filter(x=>x!==id);stats.tasks=Math.max(0,stats.tasks-1)}
+      store.set(KEY.t,tk);saveStats();updStats();renderTasks();
+      if(tk.done.length===tk.ids.length&&e.target.checked){confetti();toast("আজকের সব হোম টাস্ক শেষ! 🏆")}};
+    box.appendChild(l)});
+  $("#taskProg").textContent=bnNum(tk.done.length)+" / "+bnNum(tk.ids.length)+" শেষ";
+}
+$("#newTasks").onclick=()=>{newTasks();renderTasks();toast("নতুন হোম টাস্ক এলো 📝")};
+renderTasks();
 
 /* ---------- writing ---------- */
 const ta=$("#wText");let topic=null;

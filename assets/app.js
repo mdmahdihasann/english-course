@@ -194,7 +194,7 @@ if(PAGE===-1){
   $("#courseMap").innerHTML=h;
   $$("#courseMap [data-lock]").forEach(a=>a.onclick=e=>{e.preventDefault();toast("🔒 আগে “"+COURSE[unlockedUpTo()].t+"” শেষ করো")});
 
-  $("#resetBtn").onclick=()=>{if(confirm("সত্যিই সব অগ্রগতি মুছে ফেলবে? পাঠগুলো আবার তালাবদ্ধ হয়ে যাবে।")){["done","weeks","studied","practice.writings","practice.draft","practice.stats"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});location.reload()}};
+  $("#resetBtn").onclick=()=>{if(confirm("সত্যিই সব অগ্রগতি মুছে ফেলবে? পাঠগুলো আবার তালাবদ্ধ হয়ে যাবে।")){["done","weeks","studied","practice.writings","practice.draft","practice.stats","practice.tasks"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});location.reload()}};
 
   /* dashboard */
   const dkey=d=>{const z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)};
