@@ -29,16 +29,17 @@ const icons={"শুরু করো":"🚀","গ্রামার":"📘","স
 function groupsOf(){const g=[];COURSE.forEach((c,i)=>{let last=g[g.length-1];if(!last||last.name!==c.g){last={name:c.g,items:[]};g.push(last)}last.items.push(i)});return g}
 function renderSide(){
   const nav=$("#sideNav"),next=unlockedUpTo();
-  let h=`<a class="side-home${PAGE<0?" on":""}" href="index.html"><span class="gi">🏠</span>হোম ও কোর্স ম্যাপ</a>`;
+  let h=`<a class="side-home${PAGE===-1?" on":""}" href="index.html"><span class="gi">🏠</span>হোম ও কোর্স ম্যাপ</a>`;
   groupsOf().forEach(g=>{
     const inG=g.items.includes(PAGE)||g.items.includes(next);
     const dn=g.items.filter(isDone).length;
-    h+=`<details class="ng"${inG||PAGE<0?" open":""}><summary><span class="gi">${icons[g.name]||"📄"}</span><span class="gn">${g.name}</span><span class="gc">${bnNum(dn)}/${bnNum(g.items.length)}</span></summary><div class="gl">`;
+    h+=`<details class="ng"${inG||PAGE===-1?" open":""}><summary><span class="gi">${icons[g.name]||"📄"}</span><span class="gn">${g.name}</span><span class="gc">${bnNum(dn)}/${bnNum(g.items.length)}</span></summary><div class="gl">`;
     g.items.forEach(i=>{const c=COURSE[i];const d=isDone(i),o=isOpen(i);
       const cls=[i===PAGE?"on":"",d?"done":"",!o?"locked":"",(i===next&&!d)?"next":""].join(" ");
       const badge=d?"✓":!o?"🔒":c.b;
       h+=`<a class="${cls}" href="${o?c.f:"#"}"${o?"":` aria-disabled="true" data-lock="${i}"`}${i===PAGE?' aria-current="page"':""}><i class="nb">${badge}</i><span class="nt"><small>${c.tag}</small>${c.t}</span></a>`});
     h+="</div></details>"});
+  h+=`<a class="side-home side-prac${PAGE===-2?" on":""}" href="practice.html"><span class="gi">🎯</span>দৈনিক অনুশীলন</a>`;
   nav.innerHTML=h;
   $$("#sideNav a[data-lock]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();toast("🔒 আগে “"+COURSE[unlockedUpTo()].t+"” শেষ করো")}));
   const pc=Math.round(done.size/N*100);$("#sideProg").textContent=bnNum(pc)+"%";$("#sideBar").style.width=pc+"%";
@@ -72,6 +73,9 @@ function confetti(){if(reduce)return;const cols=["#0b6e4f","#f2b705","#d63a31","
 const onScroll=()=>{const h=document.documentElement;const m=h.scrollHeight-h.clientHeight;$("#pbar").style.width=(m>0?h.scrollTop/m*100:0)+"%";$("#totop").classList.toggle("show",h.scrollTop>700)};
 addEventListener("scroll",onScroll,{passive:true});
 $("#totop").onclick=()=>scrollTo({top:0,behavior:reduce?"auto":"smooth"});
+
+/* shared helpers for other page scripts (practice.js) */
+window.EC={$,$$,bnNum,store,toast,speak,mkSay,confetti,reduce};
 
 /* ================= LESSON PAGE ================= */
 if(PAGE>=0){
@@ -173,7 +177,7 @@ if(PAGE>=0){
 }
 
 /* ================= HOME PAGE ================= */
-if(PAGE<0){
+if(PAGE===-1){
   const next=unlockedUpTo();
   const cb=$("#continueBtn");
   if(next>=N){cb.textContent="কোর্স শেষ! আবার রিভিশন দাও";cb.href=COURSE[0].f;
@@ -190,7 +194,7 @@ if(PAGE<0){
   $("#courseMap").innerHTML=h;
   $$("#courseMap [data-lock]").forEach(a=>a.onclick=e=>{e.preventDefault();toast("🔒 আগে “"+COURSE[unlockedUpTo()].t+"” শেষ করো")});
 
-  $("#resetBtn").onclick=()=>{if(confirm("সত্যিই সব অগ্রগতি মুছে ফেলবে? পাঠগুলো আবার তালাবদ্ধ হয়ে যাবে।")){["done","weeks","studied"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});location.reload()}};
+  $("#resetBtn").onclick=()=>{if(confirm("সত্যিই সব অগ্রগতি মুছে ফেলবে? পাঠগুলো আবার তালাবদ্ধ হয়ে যাবে।")){["done","weeks","studied","practice.writings","practice.draft","practice.stats"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});location.reload()}};
 
   /* dashboard */
   const dkey=d=>{const z=new Date(d.getTime()-d.getTimezoneOffset()*60000);return z.toISOString().slice(0,10)};

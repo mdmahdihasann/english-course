@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>দৈনিক অনুশীলন — ইংরেজি বলা শিখি</title>
+<meta name="description" content="বাংলায় বুঝে বুঝে ইংরেজি গ্রামার ও স্পোকেন ইংলিশ শেখার ৩ মাসের সহজ কোর্স।">
+<meta name="theme-color" content="#0b6e4f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
+</head>
+<body data-page="-2">
+<header class="topbar">
+  <div class="in">
+    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="মেনু খোলো" aria-expanded="false">☰</button>
+    <a class="brand" href="index.html"><i>En</i><b>ইংরেজি বলা শিখি</b></a>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="থিম বদলাও">🌙</button>
+  </div>
+  <div class="pbar" id="pbar"></div>
+</header>
+<div class="scrim" id="scrim"></div>
+<aside class="side" id="side" aria-label="অধ্যায়সমূহ">
+  <div class="side-head">
+    <div class="sh-top"><div><b>সূচিপত্র</b><small>৩ মাসের কোর্স</small></div>
+    <button class="icon-btn side-close" id="sideClose" type="button" aria-label="মেনু বন্ধ করো">✕</button></div>
+    <div class="sh-prog"><div class="sh-row"><span>কোর্সের অগ্রগতি</span><b id="sideProg">০%</b></div><div class="sh-bar"><i id="sideBar"></i></div></div>
+  </div>
+  <nav class="side-nav" id="sideNav"></nav>
+</aside>
+<div class="layout">
+<main id="main">
+<p class="crumb"><a href="index.html">কোর্স ম্যাপ</a> <span>›</span> দৈনিক অনুশীলন</p>
+<section class="sec" id="lesson">
+<h2><span class="tag">প্রতিদিন</span><span class="ttl">দৈনিক অনুশীলন</span></h2>
+<p>এই পেজটা প্রতিবার খুললে <b>নতুন কুইজ, নতুন বাক্য, নতুন শব্দ আর লেখার নতুন টপিক</b> পাবে। কোর্সের যেকোনো ধাপে এখানে এসে প্রতিদিন ১৫ মিনিট অনুশীলন করো। তোমার স্কোর আর লেখাগুলো এই ব্রাউজারেই সেভ থাকে।</p>
+<div class="pstats">
+  <div class="card"><div class="k">কুইজ খেলেছ</div><div class="v" id="pQuizN">০</div></div>
+  <div class="card"><div class="k">সেরা স্কোর</div><div class="v" id="pBest">—</div></div>
+  <div class="card"><div class="k">লেখা জমা দিয়েছ</div><div class="v" id="pWriteN">০</div></div>
+</div>
+</section>
+
+<section class="sec" id="pquiz">
+<h3>🎲 র‍্যান্ডম কুইজ</h3>
+<p>৫০+ প্রশ্ন থেকে প্রতিবার ১০টা এলোমেলোভাবে আসবে। ভুল হলে বাংলায় কারণ দেখাবে।</p>
+<div class="quiz" id="pQuiz">
+  <div class="qbar"><span id="qNum"></span><span id="qScore"></span></div>
+  <div class="qtrack"><i id="qFill"></i></div>
+  <p class="qask" id="qAsk"></p>
+  <div class="qopts" id="qOpts"></div>
+  <p class="qwhy" id="qWhy" aria-live="polite"></p>
+  <button type="button" class="btn" id="qNext" hidden>পরের প্রশ্ন</button>
+</div>
+</section>
+
+<section class="sec" id="pread">
+<h3>📖 আজকের ৫টা বাক্য</h3>
+<p>প্রতিটা বাক্য 🔊 চেপে শোনো, তারপর জোরে জোরে অন্তত ৩ বার বলো।</p>
+<div class="sent-list" id="sentList"></div>
+<h3>🆕 আজকের ৮টা নতুন শব্দ</h3>
+<p>শব্দটা, অর্থ আর উদাহরণ বাক্যটা খাতায় লিখে রাখো।</p>
+<div class="word-grid" id="wordGrid"></div>
+<div class="cta"><button class="btn ghost" id="newSet" type="button">🔄 নতুন সেট দাও</button></div>
+</section>
+
+<section class="sec" id="pwrite">
+<h3>✍️ আজকের লেখা</h3>
+<p>নিচের টপিকে ইংরেজিতে অন্তত ৫টা বাক্য লেখো। ভুল হলে হবে — লেখার অভ্যাসটাই আসল।</p>
+<div class="box gold topic">
+  <div class="bt">টপিক</div>
+  <div class="topic-t" id="topicT"></div>
+  <div class="topic-bn" id="topicBn"></div>
+  <ul id="topicHints"></ul>
+  <button type="button" class="link" id="newTopic">অন্য টপিক দাও</button>
+</div>
+<label class="wlabel" for="wText">তোমার লেখা</label>
+<textarea class="wtext" id="wText" rows="8" placeholder="Write here in English..." spellcheck="true"></textarea>
+<div class="wbar"><span id="wCount">০ শব্দ</span><span id="wSaved"></span></div>
+<div class="cta"><button class="btn" id="wSubmit" type="button">📩 জমা দাও</button></div>
+<h3>🗂 আমার জমা দেওয়া লেখাগুলো</h3>
+<div class="wlist" id="wList"></div>
+</section>
+</main>
+</div>
+<button class="totop" id="totop" type="button" aria-label="উপরে যাও">↑</button>
+<div class="toast" id="toast" role="status"></div>
+<noscript><style>.js main{visibility:visible}</style></noscript>
+<script src="assets/app.js"></script>
+<script src="assets/practice.js"></script>
+</body>
+</html>
