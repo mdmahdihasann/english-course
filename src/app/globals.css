@@ -48,7 +48,6 @@ s{opacity:.75}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:18px;margin-right:auto;white-space:nowrap}
 .brand i{width:34px;height:34px;border-radius:10px;background:var(--green);color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--lat);font-size:15px;font-weight:700}
 .icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;font-size:18px}
-.menu-btn{display:none}
 .pbar{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:linear-gradient(90deg,var(--green),var(--sun));transition:width .1s linear}
 
 /* ---------- layout ---------- */
@@ -233,7 +232,6 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px 50p
 /* ---------- mobile ---------- */
 @media (max-width:980px){
   .layout{padding:calc(var(--top) + 12px) 16px 40px}
-  .menu-btn{display:grid}
   .side{position:fixed;top:0;left:0;bottom:0;width:min(330px,88vw);height:auto;z-index:80;border-radius:0 22px 22px 0;border-right:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);transform:translateX(-102%);transition:transform .3s ease;box-shadow:0 0 40px rgba(0,0,0,.25)}
   .side-close{display:grid}
   body.nav-open .side{transform:none}
@@ -508,6 +506,24 @@ footer{text-align:center;color:var(--muted);font-size:14px;padding:30px 16px 50p
 .xpchip.full .ring.sm{background:var(--green)}
 .xpchip.full .ring.sm::after{content:"✓";display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--green)}
 @media (max-width:420px){.xpchip small{display:none}.xpchip{padding-right:10px}}
+
+/* top bar on phones: tighter spacing, brand text truncates instead of pushing buttons off-screen */
+@media (max-width:640px){
+  .topbar .in{gap:8px;padding:0 max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px))}
+  .brand{min-width:0;gap:8px}
+  .brand i{width:32px;height:32px;flex:none;font-size:14px}
+  .brand b{min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .topbar .icon-btn{width:38px;height:38px;flex:none;font-size:16px}
+  .xpchip{height:38px;flex:none}
+}
+@media (max-width:340px){
+  .brand b{font-size:14px}
+  .brand{gap:6px}
+  .brand i{width:30px;height:30px}
+  .topbar .in{gap:6px;padding:0 10px}
+  .topbar .icon-btn,.xpchip{height:36px}
+  .topbar .icon-btn{width:36px}
+}
 
 /* ---------- goal bar / level ---------- */
 .goalbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:14px 0 0;padding:12px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-size:15px}

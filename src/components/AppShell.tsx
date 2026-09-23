@@ -54,16 +54,6 @@ function Shell({ children }: { children: React.ReactNode }) {
     <>
       <header className="topbar">
         <div className="in">
-          <button
-            className="icon-btn menu-btn"
-            type="button"
-            aria-label="মেনু খোলো"
-            aria-expanded={navOpen}
-            aria-controls="side"
-            onClick={() => setNavOpen(!navOpen)}
-          >
-            ☰
-          </button>
           <Link className="brand" href="/">
             <i>En</i>
             <b>ইংরেজি বলা শিখি</b>
