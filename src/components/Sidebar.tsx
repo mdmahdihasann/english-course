@@ -21,7 +21,7 @@ export default function Sidebar({ page }: { page: number }) {
 
   const lockedClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    toast("🔒 আগে “" + COURSE[p.next].title + "” শেষ করো");
+    toast("🔒 আগে এই পাঠটা শেষ করো: “" + COURSE[p.next].title + "”");
   };
 
   const item = (i: number) => {

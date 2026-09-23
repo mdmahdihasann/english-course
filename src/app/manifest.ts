@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ইংরেজি বলা শিখি — স্পোকেন ইংলিশ কোর্স",
-    short_name: "ইংরেজি শিখি",
-    description: "বাংলায় বুঝে বুঝে ইংরেজি গ্রামার ও স্পোকেন ইংলিশ শেখার ৩ মাসের সহজ কোর্স।",
-    lang: "bn",
+    name: "Speak English — Spoken English Course",
+    short_name: "Speak English",
+    description: "A simple 3-month spoken English and grammar course — in English or বাংলা.",
+    lang: "en",
     start_url: "/",
     scope: "/",
     display: "standalone",

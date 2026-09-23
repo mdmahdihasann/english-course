@@ -97,7 +97,7 @@ export default function Dictation() {
                 </span>
               ))}
             </div>
-            <small>{cur[1]}</small>
+            <small translate="no">{cur[1]}</small>
             <p>
               {res.exact
                 ? "✅ নিখুঁত! সব শব্দ ঠিক।"

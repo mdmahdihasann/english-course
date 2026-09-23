@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { COURSE } from "@/data/course";
 import { lessonHref, N, useMarkDone, useProgress } from "@/lib/progress";
 import { speak } from "@/lib/speech";
@@ -146,12 +146,15 @@ export default function LessonView({ index, html }: { index: number; html: strin
   );
 }
 
+const KEEP_BN = new Set(["বাংলা অর্থ", "অর্থ", "মানে", "বাংলা", "উচ্চারণ"]);
+
 /** Static lesson HTML + progressive enhancements (pronunciation buttons, answer toggles, week checkboxes). */
 function Content({ html }: { html: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const { toast } = useUI();
 
-  useEffect(() => {
+  // layout effect: must see the original Bangla before the translator rewrites it
+  useLayoutEffect(() => {
     const root = ref.current;
     if (!root || root.dataset.enh) return;
     root.dataset.enh = "1";
@@ -184,6 +187,10 @@ function Content({ html }: { html: string }) {
         t.classList.add("stack");
         w.classList.add("stackw");
       }
+      // meaning / pronunciation columns stay in Bangla in English mode
+      const keep = [...t.querySelectorAll("thead th")].map((th) => KEEP_BN.has(th.textContent?.trim() ?? ""));
+      if (keep.some(Boolean))
+        t.querySelectorAll("tbody tr").forEach((tr) => [...tr.children].forEach((td, i) => keep[i] && td.setAttribute("translate", "no")));
       if (t.classList.contains("mist")) return;
       t.querySelectorAll("tbody tr").forEach((tr) => {
         const cell = tr.querySelector("td.en");

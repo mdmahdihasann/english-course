@@ -49,7 +49,7 @@ export default function Dictionary() {
               {h.en}
               <SayButton text={h.kind === "Verb" ? h.en.replace(/ · /g, ", ") : h.en} />
             </div>
-            <small>{h.bn}</small>
+            <small translate="no">{h.bn}</small>
             {h.ex && (
               <small className="ex">
                 {h.ex} <SayButton text={h.ex} />

@@ -240,7 +240,7 @@ function Machine() {
     <div className="machine" aria-live="polite">
       <div className="row">
         <small>বাংলায় ভাবো</small>
-        <div className="bn-s">{bn}</div>
+        <div className="bn-s" translate="no">{bn}</div>
       </div>
       <div className="mid">
         <b>ইংরেজিতে বলো</b>

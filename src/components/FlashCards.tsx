@@ -59,7 +59,7 @@ export default function FlashCards({ onAllSeen }: { onAllSeen: () => void }) {
           <span className="fc-front">
             <small>এর অতীত রূপ কী?</small>
             <b>{v[0]}</b>
-            <em>{v[3]}</em>
+            <em translate="no">{v[3]}</em>
           </span>
           <span className="fc-back">
             <small>V1 – V2 – V3</small>

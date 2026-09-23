@@ -787,3 +787,33 @@ kbd{font:inherit;font-size:11.5px;padding:1px 6px;border-radius:6px;border:1px s
   .quiz.hunt{padding:16px}
 }
 @media (prefers-reduced-motion:reduce){.pol-card{animation:none}}
+
+/* ---------- language (EN default, বাংলা via translator) ---------- */
+/* English mode: hide the page until the translator's first pass so Bangla never flashes */
+html.tr-wait body{opacity:0}
+body{transition:opacity .18s ease}
+.lang{display:flex;flex:none;height:38px;padding:3px;gap:2px;border-radius:12px;border:1px solid var(--line);background:var(--bg)}
+.lang button{min-width:38px;padding:0 9px;border:none;border-radius:9px;background:none;cursor:pointer;font:inherit;font-size:13px;font-weight:700;color:var(--muted);line-height:1;transition:background .2s,color .2s}
+.lang button.on{background:var(--surface);color:var(--green);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+
+/* ---------- phone polish ---------- */
+@media (max-width:980px){
+  /* solid bars — text scrolling underneath was bleeding through the blur */
+  .topbar{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .bnav{background:var(--surface);backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:0 -6px 20px -14px rgba(0,0,0,.35)}
+  .bnav a,.bnav button{position:relative;font-size:11.5px;letter-spacing:.1px}
+  .bnav span{display:grid;place-items:center;width:44px;height:28px;border-radius:14px;font-size:18px;transition:background .2s,transform .2s,filter .2s}
+  .bnav .on span{background:var(--green-soft);transform:none}
+}
+@media (max-width:640px){
+  .theme-btn{display:none!important}
+  .topbar .in{gap:6px}
+  .brand b{font-size:15px}
+  .lang{height:36px}
+  .lang button{min-width:32px;padding:0 6px;font-size:12.5px}
+  .layout{padding-left:14px;padding-right:14px}
+  .pstats .card:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media (max-width:380px){
+  .brand b{display:none}
+}

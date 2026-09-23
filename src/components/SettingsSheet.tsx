@@ -5,6 +5,7 @@ import { lessonHref } from "@/lib/progress";
 import { DEFAULT_SETTINGS, speak, type Settings } from "@/lib/speech";
 import { clearProgress, exportAll, importAll, KEYS, useHydrated, usePersisted } from "@/lib/store";
 import { bnNum } from "@/lib/util";
+import { useLang } from "./LangToggle";
 import { useUI } from "./UIProvider";
 
 type BIPEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> };
@@ -19,6 +20,7 @@ export function useSettings() {
 export default function SettingsSheet() {
   const { settingsOpen: open, setSettingsOpen, toast } = useUI();
   const [s, set] = useSettings();
+  const [lang, setLang] = useLang();
   const [theme, setTheme] = usePersisted<"dark" | "light" | null>(KEYS.theme, null);
   const hydrated = useHydrated();
   const [install, setInstall] = useState<BIPEvent | null>(null);
@@ -115,6 +117,20 @@ export default function SettingsSheet() {
             📲 অ্যাপ হিসেবে ইনস্টল করো
           </button>
         )}
+
+        <fieldset className="opt">
+          <legend>ভাষা / Language</legend>
+          <div translate="no">
+            <Seg
+              value={hydrated ? lang : "en"}
+              onChange={(v) => setLang(v as "en" | "bn")}
+              items={[
+                ["en", "English"],
+                ["bn", "বাংলা"],
+              ]}
+            />
+          </div>
+        </fieldset>
 
         <fieldset className="opt">
           <legend>থিম</legend>

@@ -138,7 +138,7 @@ export default function SRSReview() {
               <span>{map[card.id] ? "🔁 রিভিশন" : "✨ নতুন"}</span>
             </div>
             <div className={"srs-card" + (card.deck === "s" ? " bnf" : "")}>
-              <div className="srs-front">
+              <div className="srs-front" translate={card.deck === "s" ? "no" : undefined}>
                 {card.front}
                 {card.deck !== "s" && <SayButton text={card.front} />}
               </div>
@@ -146,7 +146,7 @@ export default function SRSReview() {
               {card.deck === "s" && !shown && <small className="srs-q">ইংরেজিতে জোরে বলো, তারপর উত্তর দেখো</small>}
               {shown && (
                 <div className="srs-back">
-                  <div className={card.deck === "w" ? "" : "en"}>
+                  <div className={card.deck === "w" ? "" : "en"} translate={card.deck === "w" ? "no" : undefined}>
                     {card.back}
                     {card.deck === "s" && <SayButton text={card.back} />}
                   </div>

@@ -11,6 +11,7 @@ export const KEYS = {
   studied: "studied",
   theme: "theme",
   settings: "settings",
+  lang: "lang",
   writings: "practice.writings",
   draft: "practice.draft",
   stats: "practice.stats",

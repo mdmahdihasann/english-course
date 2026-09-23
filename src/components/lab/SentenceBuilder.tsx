@@ -70,7 +70,7 @@ export default function SentenceBuilder() {
             অন্য বাক্য →
           </button>
         </div>
-        <p className="build-bn">{r.bn}</p>
+        <p className="build-bn" translate="no">{r.bn}</p>
         <div className={"build-line " + state} aria-live="polite">
           {chosen.length ? (
             chosen.map((id) => (

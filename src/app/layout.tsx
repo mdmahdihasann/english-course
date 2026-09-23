@@ -11,18 +11,19 @@ const site = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.
 export const metadata: Metadata = {
   metadataBase: new URL(site),
   title: {
-    default: "ইংরেজি বলা শিখি — ৩ মাসের স্পোকেন ইংলিশ ও গ্রামার কোর্স",
-    template: "%s — ইংরেজি বলা শিখি",
+    default: "Speak English — 3-month Spoken English & Grammar Course",
+    template: "%s — Speak English",
   },
-  description: "বাংলায় বুঝে বুঝে ইংরেজি গ্রামার ও স্পোকেন ইংলিশ শেখার ৩ মাসের সহজ কোর্স। ৩৩টি পাঠ, দৈনিক কুইজ, উচ্চারণ ও কথা বলার অনুশীলন।",
-  applicationName: "ইংরেজি বলা শিখি",
-  appleWebApp: { capable: true, title: "ইংরেজি শিখি", statusBarStyle: "default" },
+  description: "A simple 3-month spoken English and grammar course for Bangla speakers — 33 lessons, daily quizzes, pronunciation and speaking practice. Available in English and বাংলা.",
+  applicationName: "Speak English",
+  appleWebApp: { capable: true, title: "Speak English", statusBarStyle: "default" },
   openGraph: {
     type: "website",
-    locale: "bn_BD",
-    siteName: "ইংরেজি বলা শিখি",
-    title: "ইংরেজি বলা শিখি — ৩ মাসের স্পোকেন ইংলিশ কোর্স",
-    description: "বাংলায় বুঝে বুঝে ইংরেজি গ্রামার ও স্পোকেন ইংলিশ শেখার ৩ মাসের সহজ কোর্স।",
+    locale: "en_US",
+    alternateLocale: ["bn_BD"],
+    siteName: "Speak English",
+    title: "Speak English — 3-month Spoken English Course",
+    description: "Learn English grammar and spoken English step by step — in English or বাংলা.",
   },
   icons: { icon: "/icons/192", apple: "/icons/180" },
 };
@@ -40,7 +41,8 @@ export const viewport: Viewport = {
 // the whole site uses the book's typeface: Noto Sans Bengali (Bangla) + Noto Sans (English)
 
 // runs before paint so theme / font size never flash
-const boot = `try{var d=document.documentElement,t=JSON.parse(localStorage.getItem('theme')||'null');if(t==='dark'||t==='light')d.dataset.theme=t;var s=JSON.parse(localStorage.getItem('settings')||'{}');if(s&&s.font)d.dataset.fs=s.font}catch(e){}`;
+// English mode: keep the page covered until the translator's first pass (max 1.8s)
+const boot = `try{var d=document.documentElement,l=JSON.parse(localStorage.getItem('lang')||'"en"');d.lang=l;if(l!=='bn'){d.classList.add('tr-wait');setTimeout(function(){d.classList.remove('tr-wait')},1800)}}catch(e){}try{var d=document.documentElement,t=JSON.parse(localStorage.getItem('theme')||'null');if(t==='dark'||t==='light')d.dataset.theme=t;var s=JSON.parse(localStorage.getItem('settings')||'{}');if(s&&s.font)d.dataset.fs=s.font}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

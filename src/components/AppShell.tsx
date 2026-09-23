@@ -7,6 +7,7 @@ import { lessonHref, useProgress } from "@/lib/progress";
 import { KEYS, useHydrated, usePersisted } from "@/lib/store";
 import { bnNum, dayKey, reducedMotion } from "@/lib/util";
 import { DEFAULT_GOAL, NO_XP, type XPLog } from "@/lib/xp";
+import LangToggle, { LangSync } from "./LangToggle";
 import SettingsSheet from "./SettingsSheet";
 import Sidebar from "./Sidebar";
 import { UIProvider, useUI } from "./UIProvider";
@@ -24,6 +25,7 @@ const pageOf = (path: string) => {
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <UIProvider>
+      <LangSync />
       <Shell>{children}</Shell>
     </UIProvider>
   );
@@ -58,6 +60,7 @@ function Shell({ children }: { children: React.ReactNode }) {
             <i>En</i>
             <b>ইংরেজি বলা শিখি</b>
           </Link>
+          <LangToggle />
           <XPChip />
           <ThemeButton />
           <button className="icon-btn" type="button" aria-label="সেটিংস" onClick={() => setSettingsOpen(true)}>
@@ -86,7 +89,7 @@ export function ThemeButton() {
     else delete document.documentElement.dataset.theme;
   }, [theme]);
   return (
-    <button className="icon-btn" type="button" aria-label="থিম বদলাও" onClick={() => setTheme(cur === "dark" ? "light" : "dark")}>
+    <button className="icon-btn theme-btn" type="button" aria-label="থিম বদলাও" onClick={() => setTheme(cur === "dark" ? "light" : "dark")}>
       {hydrated ? (cur === "dark" ? "☀️" : "🌙") : "🌙"}
     </button>
   );

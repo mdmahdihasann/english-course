@@ -168,7 +168,7 @@ function ReadSet() {
               {en}
               <SayButton text={en} />
             </div>
-            <small>{bn}</small>
+            <small translate="no">{bn}</small>
           </div>
         ))}
       </div>
@@ -181,7 +181,7 @@ function ReadSet() {
               {w}
               <SayButton text={w} />
             </b>
-            <span>{m}</span>
+            <span translate="no">{m}</span>
             <i>
               {ex}
               <SayButton text={ex} />
@@ -479,7 +479,7 @@ function Writing() {
       <div className="box gold topic">
         <div className="bt">টপিক</div>
         <div className="topic-t">{topic.t}</div>
-        <div className="topic-bn">{topic.bn}</div>
+        <div className="topic-bn" translate="no">{topic.bn}</div>
         <ul>
           {topic.h.map((x) => (
             <li key={x}>{x}</li>
