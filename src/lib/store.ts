@@ -22,6 +22,9 @@ export const KEYS = {
   srs: "lab.srs",
   srsDay: "lab.srsday",
   lab: "lab.stats",
+  adv: "adv.stats",
+  advTab: "adv.tab",
+  advDraft: "adv.draft",
 } as const;
 
 type Listener = () => void;
@@ -130,5 +133,5 @@ export function importAll(data: Record<string, unknown>) {
 }
 
 export function clearProgress() {
-  [KEYS.done, KEYS.weeks, KEYS.studied, KEYS.writings, KEYS.draft, KEYS.stats, KEYS.tasks, KEYS.missed, KEYS.speak, KEYS.xp, KEYS.srs, KEYS.srsDay, KEYS.lab].forEach(remove);
+  [KEYS.done, KEYS.weeks, KEYS.studied, KEYS.writings, KEYS.draft, KEYS.stats, KEYS.tasks, KEYS.missed, KEYS.speak, KEYS.xp, KEYS.srs, KEYS.srsDay, KEYS.lab, KEYS.adv, KEYS.advDraft].forEach(remove);
 }

@@ -48,6 +48,15 @@ export default function Lab() {
         </Link>
       </section>
 
+      <Link className="pcard adv" href="/advanced">
+        <span className="pi">🎓</span>
+        <span>
+          <b>আরও এগোতে চাও? অ্যাডভান্সড স্টুডিও</b>
+          <small>নিজের লেখা পলিশ করো, idiom শেখো, সূক্ষ্ম গ্রামার ভুল ধরো</small>
+        </span>
+        <span className="go">খোলো →</span>
+      </Link>
+
       <nav className="jump" aria-label="ল্যাবের অংশ">
         {SECTIONS.map(([id, l]) => (
           <a key={id} href={"#" + id}>

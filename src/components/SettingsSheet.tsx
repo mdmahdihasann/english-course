@@ -54,7 +54,7 @@ export default function SettingsSheet() {
     setOffline("busy");
     try {
       const c = await caches.open("ec-pages-v1");
-      const urls = ["/", "/practice", "/lab", "/progress", ...COURSE.map((_, i) => lessonHref(i))];
+      const urls = ["/", "/practice", "/lab", "/advanced", "/progress", ...COURSE.map((_, i) => lessonHref(i))];
       await Promise.all(
         urls.map(async (u) => {
           const r = await fetch(u, { credentials: "same-origin" });

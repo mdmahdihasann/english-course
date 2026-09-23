@@ -140,6 +140,14 @@ export default function Home() {
         </span>
         <span className="go">খোলো →</span>
       </Link>
+      <Link className="pcard adv" href="/advanced">
+        <span className="pi">🎓</span>
+        <span>
+          <b>অ্যাডভান্সড স্টুডিও — নতুন</b>
+          <small>✍️ রাইটিং পলিশার · 💬 Idioms ও Phrasal Verbs · 🔍 ভুল খোঁজো · 🔗 Collocations · 🎩 ফরমাল ইংলিশ</small>
+        </span>
+        <span className="go">খোলো →</span>
+      </Link>
       <Link className="pcard prog" href="/progress">
         <span className="pi">📊</span>
         <span>

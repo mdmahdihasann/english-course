@@ -16,6 +16,7 @@ const pageOf = (path: string) => {
   if (path.startsWith("/practice")) return -2;
   if (path.startsWith("/lab")) return -4;
   if (path.startsWith("/progress")) return -5;
+  if (path.startsWith("/advanced")) return -6;
   const m = path.match(/^\/lessons\/(\d+)/);
   return m ? +m[1] - 1 : -3;
 };
