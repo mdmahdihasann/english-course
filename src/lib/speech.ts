@@ -34,7 +34,7 @@ const clean = (t: string) =>
 let current: (() => void) | null = null;
 
 /** Speak English text. Returns false when the browser can't. */
-export function speak(text: string, onEnd?: () => void, opts?: { rate?: number }) {
+export function speak(text: string, onEnd?: () => void, opts?: { rate?: number; pitch?: number }) {
   if (!hasTTS()) return false;
   speechSynthesis.cancel();
   current?.();
@@ -43,6 +43,7 @@ export function speak(text: string, onEnd?: () => void, opts?: { rate?: number }
   const u = new SpeechSynthesisUtterance(clean(text));
   u.lang = s.accent === "GB" ? "en-GB" : "en-US";
   u.rate = opts?.rate ?? s.rate;
+  if (opts?.pitch) u.pitch = opts.pitch;
   const v = pickVoice(s.accent);
   if (v) u.voice = v;
   u.onend = u.onerror = () => {

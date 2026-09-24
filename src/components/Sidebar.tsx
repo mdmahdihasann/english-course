@@ -7,7 +7,7 @@ import { useHydrated } from "@/lib/store";
 import { bnNum } from "@/lib/util";
 import { useUI } from "./UIProvider";
 
-/** page: lesson index, -1 home, -2 practice, -3 other, -4 lab, -5 progress, -6 advanced */
+/** page: lesson index, -1 home, -2 practice, -3 other, -4 lab, -5 progress, -6 advanced, -7 talk */
 export default function Sidebar({ page }: { page: number }) {
   const { navOpen, setNavOpen, toast } = useUI();
   const p = useProgress();
@@ -113,6 +113,9 @@ export default function Sidebar({ page }: { page: number }) {
               </Link>
               <Link className={"side-home side-adv" + (page === -6 ? " on" : "")} href="/advanced" onClick={() => setNavOpen(false)}>
                 <span className="gi">🎓</span>অ্যাডভান্সড স্টুডিও
+              </Link>
+              <Link className={"side-home side-talk" + (page === -7 ? " on" : "")} href="/talk" onClick={() => setNavOpen(false)}>
+                <span className="gi">🎭</span>রোল-প্লে স্টুডিও
               </Link>
               <Link className={"side-home" + (page === -5 ? " on" : "")} href="/progress" onClick={() => setNavOpen(false)}>
                 <span className="gi">📊</span>আমার অগ্রগতি

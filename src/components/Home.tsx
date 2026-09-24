@@ -148,6 +148,14 @@ export default function Home() {
         </span>
         <span className="go">খোলো →</span>
       </Link>
+      <Link className="pcard talk" href="/talk">
+        <span className="pi">🎭</span>
+        <span>
+          <b>রোল-প্লে স্টুডিও — নতুন</b>
+          <small>👋 পরিচয় · 🛍️ কেনাকাটা · 🗺️ রাস্তা · 🍽️ রেস্টুরেন্ট · 🩺 ডাক্তার · 💼 ইন্টারভিউ — শোনো, তারপর নিজেই বলো 🎤</small>
+        </span>
+        <span className="go">শুরু করো →</span>
+      </Link>
       <Link className="pcard prog" href="/progress">
         <span className="pi">📊</span>
         <span>
